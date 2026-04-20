@@ -1,32 +1,42 @@
 # Custom ALV Sales Order Report in SAP ABAP
 
-**Capstone Project** 
-
-BY :
-
-**Name : Abhisekh Tewary ,
-Roll No.: 2306005 ,
-Branch: Information Technology ,
-Batch: 2027 ,
-Specialization: SAP ABAP Development**
+**Capstone Project**
+**Name:** Abhisekh Tewary
+**Roll No.:** 2306005
+**Branch:** Information Technology
+**Batch:** 2027
+**Specialization:** SAP ABAP Development
 
 ---
 
 ## Project Overview
 
-Standard SAP reports like VA05 provide limited flexibility and do not fully support custom business requirements. In real-world scenarios, users need a consolidated and interactive report that combines multiple datasets and provides meaningful insights.
+Standard SAP transactions such as VA05 provide limited reporting capabilities and lack flexibility for custom business needs. In real-world scenarios, organizations require an integrated and interactive report that combines multiple datasets and supports quick decision-making.
 
-This project develops a **Custom ALV (ABAP List Viewer) Report** that integrates sales order, item, and customer data into a single ALV Grid. It provides filtering, aggregation, and visual status indicators to improve decision-making and monitoring.
+This project develops a **Custom ALV (ABAP List Viewer) Report** that consolidates sales order data from multiple SAP tables and presents it in a structured ALV Grid. The report enables efficient monitoring and analysis through filtering, aggregation, and visual indicators.
+
+---
+
+## Problem Statement
+
+Standard SAP reports do not provide:
+
+* Flexible filtering options
+* Combined view of header, item, and customer data
+* Visual representation of order status
+* Easy aggregation for analysis
+
+This creates difficulty in quick and effective business decision-making.
 
 ---
 
 ## Objectives
 
-* Build a reusable ALV-based reporting solution
-* Combine data from multiple SAP tables using optimized queries
-* Provide dynamic filtering options
-* Implement business logic for order status visualization
-* Enable aggregation and structured display of data
+* Develop a reusable ALV-based reporting solution
+* Retrieve and integrate data from multiple SAP tables
+* Implement business logic for order status tracking
+* Provide dynamic filtering and structured output
+* Enable aggregation and improved visualization
 
 ---
 
@@ -34,16 +44,16 @@ This project develops a **Custom ALV (ABAP List Viewer) Report** that integrates
 
 ### 1. Selection Screen
 
-The report allows users to filter data using:
+The report includes a simple and user-friendly selection screen:
 
 * `S_DATE` — Sales order creation date (mandatory)
 * `P_VKORG` — Sales organization (default: 1000)
 
 ---
 
-### 2. Data Integration
+### 2. Data Retrieval & Integration
 
-Data is retrieved using INNER JOIN across:
+Data is fetched using optimized INNER JOIN across:
 
 * VBAK — Sales Order Header
 * VBAP — Sales Order Item
@@ -53,11 +63,11 @@ Data is retrieved using INNER JOIN across:
 
 ### 3. Order Status Logic
 
-Order status is determined using creation date comparison with system date:
+Order status is calculated based on the difference between system date and creation date:
 
 * Red (`C610`) — Orders older than 30 days
 * Yellow (`C510`) — Orders between 15–30 days
-* Green (`C310`) — Recent or processed orders
+* Green (`C310`) — Recent or on-track orders
 
 ---
 
@@ -68,14 +78,14 @@ Order status is determined using creation date comparison with system date:
 
   * Net Value (`NETWR`)
   * Quantity (`KWMENG`)
-* Zebra pattern for better readability
+* Zebra pattern for readability
 * Automatic column width optimization
-* Row-wise color highlighting
+* Row-level color highlighting
 * Structured tabular output
 
 ---
 
-## Technical Details
+## Technical Environment
 
 | Component       | Details                      |
 | --------------- | ---------------------------- |
@@ -92,29 +102,30 @@ Order status is determined using creation date comparison with system date:
 
 The program follows a modular approach using FORM routines:
 
-1. **GET_DATA** — Fetches data using INNER JOIN
-2. **APPLY_LOGIC** — Applies color coding logic
-3. **BUILD_FCAT** — Generates field catalog dynamically
-4. **DISPLAY_ALV** — Displays output in ALV Grid
+1. GET_DATA — Fetches data using INNER JOIN
+2. APPLY_LOGIC — Applies color coding logic
+3. BUILD_FCAT — Generates field catalog dynamically
+4. DISPLAY_ALV — Displays output in ALV Grid
 
 ---
 
-## Highlights
+## Key Highlights
 
-* Modular coding improves readability and maintainability
-* Dynamic field handling avoids hardcoding
+* Modular and maintainable coding structure
+* Dynamic field handling without hardcoding
 * Real-time business logic using system date
-* Built-in aggregation using ALV properties
-* Clean and structured ALV display
+* Efficient data processing using internal tables
+* Enhanced visualization using color-coded rows
+* Built-in aggregation for better analysis
 
 ---
 
 ## Future Enhancements
 
-* Add more filters (Customer, Document Type)
-* Integrate delivery status using LIPS table
-* Implement email functionality for reports
-* Convert to CDS View for better performance
+* Add filters for Customer and Document Type
+* Integrate delivery tracking using LIPS table
+* Implement email functionality
+* Convert to CDS Views for better performance
 * Extend to SAP Fiori application
 
 ---
@@ -130,8 +141,9 @@ The program follows a modular approach using FORM routines:
 
 ## Conclusion
 
-This project demonstrates how a standard SAP report can be enhanced using ABAP and ALV to provide better usability, flexibility, and business insights. The solution is scalable and can be extended further using modern SAP technologies.
+This project demonstrates how standard SAP reporting can be enhanced using ABAP and ALV to deliver a flexible, interactive, and user-friendly solution. It improves data visibility and supports better business decision-making.
 
 ---
 
-Submitted as part of SAP ABAP Capstone Project — April 2026
+**Submitted as part of SAP ABAP Capstone Project — April 2026**
+
