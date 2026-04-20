@@ -1,7 +1,8 @@
 *&---------------------------------------------------------------------*
 *& Report  Z_CUSTOM_ALV_SALES_REPORT
 *& Custom ALV Sales Order Status Report
-*& Author : Swapneel Mukherjee | Roll No: 2328213 | Batch: 2027 SAP (OE)
+*& Author : Abhisekh Tewary | Roll No: 2306005 | Batch: 2027 SAP (OE)
+*& Branch : Information Technology
 *& Package: ZREPORTS | Transaction: SE38
 *&---------------------------------------------------------------------*
 
@@ -88,11 +89,11 @@ START-OF-SELECTION.
 
   CALL FUNCTION 'REUSE_ALV_FIELDCATALOG_MERGE'
     EXPORTING
-      i_program_name   = sy-repid
+      i_program_name     = sy-repid
       i_internal_tabname = 'IT_REPORT'
-      i_inclname       = sy-repid
+      i_inclname         = sy-repid
     CHANGING
-      ct_fieldcat      = it_fcat.
+      ct_fieldcat        = it_fcat.
 
   " Customize key fields
   LOOP AT it_fcat INTO wa_fcat.
@@ -100,7 +101,7 @@ START-OF-SELECTION.
       WHEN 'VBELN'.  wa_fcat-key     = 'X'. wa_fcat-coltext = 'Sales Order'.
       WHEN 'NETWR'.  wa_fcat-do_sum  = 'X'. wa_fcat-coltext = 'Net Value'.
       WHEN 'KWMENG'. wa_fcat-do_sum  = 'X'. wa_fcat-coltext = 'Qty'.
-      WHEN 'COLOR'.  wa_fcat-no_out  = 'X'. " Hide color column from display
+      WHEN 'COLOR'.  wa_fcat-no_out  = 'X'. " Hide color column
     ENDCASE.
     MODIFY it_fcat FROM wa_fcat.
   ENDLOOP.
@@ -109,9 +110,9 @@ START-OF-SELECTION.
 * STEP 7 — Configure Layout and Display ALV
 *----------------------------------------------------------------------*
 
-  gs_layout-zebra      = 'X'.     " Alternating row shading
-  gs_layout-cwidth_opt = 'X'.     " Auto-fit column widths
-  gs_layout-info_fname = 'COLOR'. " Link color field for row highlighting
+  gs_layout-zebra      = 'X'.     
+  gs_layout-cwidth_opt = 'X'.     
+  gs_layout-info_fname = 'COLOR'. 
 
   CREATE OBJECT go_custom
     EXPORTING container_name = 'MAIN_CONTAINER'.
@@ -120,6 +121,6 @@ START-OF-SELECTION.
     EXPORTING i_parent = go_custom.
 
   go_alv->set_table_for_first_display(
-    EXPORTING is_layout      = gs_layout
-    CHANGING  it_outtab      = it_report
+    EXPORTING is_layout       = gs_layout
+    CHANGING  it_outtab       = it_report
               it_fieldcatalog = it_fcat ).
